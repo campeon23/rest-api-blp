@@ -60,7 +60,7 @@ def create_app(db_url=None):
     
     @jwt.unauthorized_loader
     def missing_token_callback(error):
-        return (jsonify({"message": "Reuest does not contain an access token.", "error": "authorization_required"}), 401)
+        return (jsonify({"message": "Request does not contain an access token.", "error": "authorization_required"}), 401)
     
     # The dabase must be deleted and these instructions commented to migrate db
     with app.app_context():
