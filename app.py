@@ -63,10 +63,10 @@ def create_app(db_url=None):
         return (jsonify({"message": "Reuest does not contain an access token.", "error": "authorization_required"}), 401)
     
     # The dabase must be deleted and these instructions commented to migrate db
-    # with app.app_context():
-    #     import models  # noqa: F401
+    with app.app_context():
+        import models  # noqa: F401
         
-    #     db.create_all()
+        db.create_all()
 
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(ItemBlueprint)
