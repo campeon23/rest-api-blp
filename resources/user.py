@@ -60,12 +60,15 @@ class User(MethodView):
     @jwt_required()
     @blp.response(200, UserSchema)
     def get(self, user_id):
+        if not jwt.get("is_admin"):
+            abort(401, message="Admin privilege required.")
+            
         user = UserModel.query.get_or_404(user_id)
         return user
     
     @jwt_required()
     def delete(self, user_id):
-        jwt = get_jwt()
+        jwt = get_jwt(refresh=True)
         if not jwt.get("is_admin"):
             abort(401, message="Admin privilege required.")
             
