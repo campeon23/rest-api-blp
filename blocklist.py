@@ -8,5 +8,3 @@ user logs out.
 from typing import Set 
 
 BLOCKLIST: Set[str] = set()
-
-# BLOCKLIST = set()
